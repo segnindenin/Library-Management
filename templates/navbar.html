@@ -1,0 +1,92 @@
+{% load static %}
+<div class="leftside-menu">
+    
+    <!-- LOGO -->
+    <a href="index.html" class="logo text-center logo-light">
+        <h2>
+            Library-Admin
+        </h2>
+        <span class="logo-sm">
+            <img src="{% static 'assets/images/logo_sm.png' %}" alt="" height="16">
+        </span>
+    </a>
+
+    <!-- LOGO -->
+    <a href="index.html" class="logo text-center logo-dark">
+        <span class="logo-lg">
+            <img src="{% static 'assets/images/logo-dark.png' %}" alt="" height="16">
+        </span>
+        <span class="logo-sm">
+            <img src="{% static 'assets/images/logo_sm_dark.png' %}" alt="" height="16">
+        </span>
+    </a>
+
+    <div class="h-100" id="leftside-menu-container" data-simplebar="">
+
+        <!--- Sidemenu -->
+        <ul class="side-nav">
+
+            <li class="side-nav-title side-nav-item">Navigation</li>
+
+            <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#sidebarDashboards" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
+                    <i class="uil-home-alt"></i>
+                    
+                    <span> Dashboards </span>
+                </a>
+                <div class="collapse" id="sidebarDashboards">
+                    <ul class="side-nav-second-level">
+                        <li>
+                            <a href="{% url 'home' %}">Analytics</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'auteurs' %}">Auteurs</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+            <li class="side-nav-title side-nav-item">Bibliothèque</li> 
+
+            <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#sidebarEcommerce" aria-expanded="false" aria-controls="sidebarEcommerce" class="side-nav-link">
+                    <i class="uil-store"></i>
+                    <span> Admin </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="sidebarEcommerce">
+                    <ul class="side-nav-second-level">
+                        <li>
+                            <a href="{% url 'book-list' %}">Liste des Livres</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'book-emprunt' %}">Liste des Emprunts</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'history' %}">Historique</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+
+            <li class="side-nav-item">
+                <a data-bs-toggle="collapse" href="#sidebarAdherent" aria-expanded="false" aria-controls="sidebarAdherent" class="side-nav-link">
+                    <i class="uil-store"></i>
+                    <span> Adherent </span>
+                    <span class="menu-arrow"></span>
+                </a>
+                <div class="collapse" id="sidebarAdherent">
+                    <ul class="side-nav-second-level">
+                        <li>
+                            <a href="{% url 'adherent-list' %}">Liste des Adherents</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'adherent-inactif' %}">Adherents Inactif</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <!-- Sidebar -left -->
+</div>
