@@ -331,6 +331,31 @@
             </div>
         </div>     
         <!-- end page title --> 
+        <div class="row mb-2">
+            <div class="col-sm-8">
+            <form class="row g-2">
+                <div class="col-auto">
+                <input type="search" class="form-control" id="searchInput" placeholder="Rechercher un auteur">
+                </div>
+                <div class="col-auto">
+                <select class="form-select" id="status-select">
+                    <option value="" selected="">Classification du livre</option>
+                    <option value="1">Paid</option>
+                    <option value="2">Awaiting Authorization</option>
+                    <option value="3">Payment failed</option>
+                    <option value="4">Cash On Delivery</option>
+                    <option value="5">Fulfilled</option>
+                    <option value="6">Unfulfilled</option>
+                </select>
+                </div>
+            </form>
+            </div>
+            <div class="col-sm-4 text-end">
+            <a href="javascript:void(0);" class="btn btn-danger mb-2" data-bs-toggle="modal" data-bs-target="#addAuteurModal">
+                <i class="mdi mdi-plus-circle me-2"></i> Ajouter un nouvel auteur
+            </a>
+            </div>
+        </div>
 
         <div class="row">
             <div class="col-12">
@@ -875,14 +900,48 @@
             </div> end col
 
         </div>
-
-
-        
-        
         <!-- end row-->
-
-        
     </div> <!-- container -->
-
 </div> <!-- content -->
+<div class="modal fade" id="addAuteurModal" tabindex="-1" aria-labelledby="addAuteurModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addAuteurModalLabel">Add New Auteur</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="{% url 'add-auteur' %}">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="nom_auteur" class="form-label">Nom</label>
+                        <input type="text" class="form-control" id="nom_auteur" name="nom_auteur" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="prenom_auteur" class="form-label">Prénom</label>
+                        <input type="text" class="form-control" id="prenom_auteur" name="prenom_auteur" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="date_naissance" class="form-label">Date de Naissance</label>
+                        <input type="date" class="form-control" id="date_naissance" name="date_naissance" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="date_deces" class="form-label">Date de Décès</label>
+                        <input type="date" class="form-control" id="date_deces" name="date_deces">
+                        <small class="form-text text-muted">Laissez vide si l'auteur est encore vivant.</small>
+                    </div>
+                    <div class="mb-3">
+                        <label for="nationalite" class="form-label">Nationalité</label>
+                        <input type="text" class="form-control" id="nationalite" name="nationalite" required>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 {% endblock %}

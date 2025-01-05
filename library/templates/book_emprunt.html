@@ -2,6 +2,17 @@
 {% load static %}
 
 {% block content %}
+{% if messages %}
+    <div class="alert-container">
+        {% for message in messages %}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
 <div class="content">
     <!-- Topbar Start -->
     <div class="navbar-custom">
@@ -337,6 +348,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="row mb-2">
+                            
                             <div class="col-xl-8">
                                 <form class="row gy-2 gx-2 align-items-center justify-content-xl-start justify-content-between">
                                     <div class="col-auto">
@@ -361,8 +373,11 @@
                             </div>
                             <div class="col-xl-4">
                                 <div class="text-xl-end mt-xl-0 mt-2">
-                                    <button type="button" class="btn btn-danger mb-2 me-2"><i class="mdi mdi-basket me-1"></i> Add New Order</button>
-                                    <button type="button" class="btn btn-light mb-2">Export</button>
+                                    <div class="text-xl-end mt-xl-0 mt-2">
+                                        <button type="button" class="btn btn-danger mb-2 me-2" data-bs-toggle="modal" data-bs-target="#addEmpruntModal">
+                                            <i class="mdi mdi-basket me-1"></i> Marquer un Emprunt
+                                        </button>
+                                    </div>                                    
                                 </div>
                             </div><!-- end col-->
                         </div>
@@ -675,4 +690,72 @@
     </div> <!-- container -->
 
 </div> <!-- content -->
+
+<!-- Add Emprunt Modal -->
+<div class="modal fade" id="addEmpruntModal" tabindex="-1" aria-labelledby="addEmpruntModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addEmpruntModalLabel">Marquer un Emprunt</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="{% url 'add-emprunt' %}">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="client" class="form-label">Client</label>
+                        <!-- Champ de recherche pour filtrer les clients -->
+                        <input type="text" id="client-search" class="form-control" placeholder="Rechercher un client..." onkeyup="filterOptions('client-search', 'client')">
+                        <!-- Liste déroulante des clients -->
+                        <select class="form-control" id="client" name="client" required>
+                            {% for client in clients %}
+                                <option value="{{ client.n_cni_reci }}">{{ client.nom }} {{ client.prenom }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="date_emprunt" class="form-label">Date d'Emprunt</label>
+                        <input type="date" class="form-control" id="date_emprunt" name="date_emprunt" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="date_retour_prevue" class="form-label">Date de Retour Prévue</label>
+                        <input type="date" class="form-control" id="date_retour_prevue" name="date_retour_prevue" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="etat" class="form-label">État</label>
+                        <select class="form-control" id="etat" name="etat" required>
+                            <option value="emprunté">Emprunté</option>
+                            <option value="non rendu">Non Rendu</option>
+                        </select>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="livres" class="form-label">Livres</label>
+                        
+                        <!-- Champ de recherche pour filtrer les livres -->
+                        <input type="text" id="livres-search" class="form-control" placeholder="Rechercher un livre..." onkeyup="filterOptions('livres-search', 'livres')">
+                        
+                        <!-- Liste déroulante des livres -->
+                        <select multiple class="form-control" id="livres" name="livres" required>
+                            {% for livre in livres %}
+                                <option value="{{ livre.isbn }}">{{ livre.titre }}</option>
+                            {% endfor %}
+                        </select>
+                        <small class="form-text text-muted">Maintenez la touche Ctrl (ou Cmd sur Mac) pour sélectionner plusieurs livres.</small>
+                    </div>
+                    
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                        <button type="submit" class="btn btn-primary">Enregistrer</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 {% endblock %}

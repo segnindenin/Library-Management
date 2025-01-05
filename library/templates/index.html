@@ -320,27 +320,15 @@
             <div class="col-12">
                 <div class="page-title-box">
                     <div class="page-title-right">
-                        <form class="d-flex">
-                            <div class="input-group">
-                                <input type="text" class="form-control form-control-light" id="dash-daterange">
-                                <span class="input-group-text bg-primary border-primary text-white">
-                                    <i class="mdi mdi-calendar-range font-13"></i>
-                                </span>
-                            </div>
-                            <a href="javascript: void(0);" class="btn btn-primary ms-2">
-                                <i class="mdi mdi-autorenew"></i>
-                            </a>
-                            <a href="javascript: void(0);" class="btn btn-primary ms-1">
-                                <i class="mdi mdi-filter-variant"></i>
-                            </a>
-                        </form>
+                            <a href="javascript:void(0);" class="btn btn-danger mb-2" data-bs-toggle="modal" data-bs-target="#addFournisseurModal">
+                                <i class="mdi mdi-plus-circle me-2"></i> Ajouter un Fournisseur
+                            </a>  
                     </div>
                     <h4 class="page-title">Dashboard</h4>
                 </div>
             </div>
         </div>
-        <!-- end page title -->
-
+        
         <div class="row">
             <div class="col-xl-5 col-lg-6">
 
@@ -349,13 +337,13 @@
                         <div class="card widget-flat">
                             <div class="card-body">
                                 <div class="float-end">
-                                    <i class="mdi mdi-account-multiple widget-icon"></i>
+                                    <i class="mdi mdi-book widget-icon"></i>
                                 </div>
-                                <h5 class="text-muted fw-normal mt-0" title="Number of Historique">Enquête Policière</h5>
-                                <h3 class="mt-3 mb-3">36,254</h3>
+                                <h5 class="text-muted fw-normal mt-0" title="Number of Historique">Fiction</h5>
+                                <h3 class="mt-3 mb-3">nbre_livre</h3>
                                 <p class="mb-0 text-muted">
-                                    <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i> 5.27% dans la biblio</span>
-                                    <span class="text-nowrap">144500 Fcfa</span>  
+                                    <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i> per_biblio %</span>
+                                    <span class="text-nowrap">cout_livre Fcfa</span>  
                                 </p>
                             </div> <!-- end card-body-->
                         </div> <!-- end card-->
@@ -365,13 +353,13 @@
                         <div class="card widget-flat">
                             <div class="card-body">
                                 <div class="float-end">
-                                    <i class="mdi mdi-cart-plus widget-icon"></i>
+                                    <i class="mdi mdi-cross widget-icon"></i>
                                 </div>
-                                <h5 class="text-muted fw-normal mt-0" title="Number of Liste des Emprunts">Developpement Personnel</h5>
-                                <h3 class="mt-3 mb-3">5,543</h3>
+                                <h5 class="text-muted fw-normal mt-0" title="Number of Liste des Emprunts">Théologie</h5>
+                                <h3 class="mt-3 mb-3">nbre_livre</h3>
                                 <p class="mb-0 text-muted">
-                                    <span class="text-danger me-2"><i class="mdi mdi-arrow-down-bold"></i> 1.08%</span>
-                                    <span class="text-nowrap">144500 Fcfa</span>
+                                    <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i>per_biblio %</span>
+                                    <span class="text-nowrap">cout_livre Fcfa</span>
                                 </p>
                             </div> <!-- end card-body-->
                         </div> <!-- end card-->
@@ -383,13 +371,13 @@
                         <div class="card widget-flat">
                             <div class="card-body">
                                 <div class="float-end">
-                                    <i class="mdi mdi-currency-usd widget-icon"></i>
+                                    <i class="mdi mdi-flask-outline widget-icon"></i>
                                 </div>
-                                <h5 class="text-muted fw-normal mt-0" title="Average Revenue">Revenue</h5>
-                                <h3 class="mt-3 mb-3">$6,254</h3>
+                                <h5 class="text-muted fw-normal mt-0" title="Average Revenue">Science</h5>
+                                <h3 class="mt-3 mb-3">nbre_livre</h3>
                                 <p class="mb-0 text-muted">
-                                    <span class="text-danger me-2"><i class="mdi mdi-arrow-down-bold"></i> 7.00%</span>
-                                    <span class="text-nowrap">144500 Fcfa</span>
+                                    <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i>per_biblio %</span>
+                                    <span class="text-nowrap">cout_livre Fcfa</span>
                                 </p>
                             </div> <!-- end card-body-->
                         </div> <!-- end card-->
@@ -399,13 +387,13 @@
                         <div class="card widget-flat">
                             <div class="card-body">
                                 <div class="float-end">
-                                    <i class="mdi mdi-pulse widget-icon"></i>
+                                    <i class="mdi mdi-history widget-icon"></i>
                                 </div>
-                                <h5 class="text-muted fw-normal mt-0" title="Growth">Growth</h5>
-                                <h3 class="mt-3 mb-3">+ 30.56%</h3>
+                                <h5 class="text-muted fw-normal mt-0" title="Growth">Histoire</h5>
+                                <h3 class="mt-3 mb-3">nbre_livre</h3>
                                 <p class="mb-0 text-muted">
-                                    <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i> 4.87%</span>
-                                    <span class="text-nowrap">144500 Fcfa</span>
+                                    <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i>per_biblio %</span>
+                                    <span class="text-nowrap">cout_livre Fcfa</span>
                                 </p>
                             </div> <!-- end card-body-->
                         </div> <!-- end card-->
@@ -449,14 +437,83 @@
 
     
     <div class="row">
-        <div class="col-xl-5 col-lg-6">
+        <div class="col-xl-6 col-lg-6">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card widget-flat">
+                        <div class="card-body">
+                            <div class="float-end">
+                                <i class="mdi mdi-palette widget-icon"></i>
+                            </div>
+                            <h5 class="text-muted fw-normal mt-0" title="Number of Historique">Art</h5>
+                            <h3 class="mt-3 mb-3">36,254</h3>
+                            <p class="mb-0 text-muted">
+                                <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i> 5.27% dans la biblio</span>
+                                <span class="text-nowrap">144500 Fcfa</span>  
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="card widget-flat">
+                        <div class="card-body">
+                            <div class="float-end">
+                                <i class="mdi mdi-school widget-icon"></i>
+                            </div>
+                            <h5 class="text-muted fw-normal mt-0" title="Number of Liste des Emprunts">Enseignement</h5>
+                            <h3 class="mt-3 mb-3">5,543</h3>
+                            <p class="mb-0 text-muted">
+                                <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i> 1.08%</span>
+                                <span class="text-nowrap">144500 Fcfa</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <div class="row">
                 <div class="col-lg-6">
                     <div class="card widget-flat">
                         <div class="card-body">
                             <div class="float-end">
-                                <i class="mdi mdi-account-multiple widget-icon"></i>
+                                <i class="mdi mdi-laptop widget-icon"></i>
+                            </div>
+                            <h5 class="text-muted fw-normal mt-0" title="Average Revenue">Technologie</h5>
+                            <h3 class="mt-3 mb-3">$6,254</h3>
+                            <p class="mb-0 text-muted">
+                                <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i> 7.00%</span>
+                                <span class="text-nowrap">144500 Fcfa</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="card widget-flat">
+                        <div class="card-body">
+                            <div class="float-end">
+                                <i class="mdi mdi-heart-pulse widget-icon"></i>
+                            </div>
+                            <h5 class="text-muted fw-normal mt-0" title="Growth">Développement Personnel</h5>
+                            <h3 class="mt-3 mb-3">+ 30.56%</h3>
+                            <p class="mb-0 text-muted">
+                                <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i> 4.87%</span>
+                                <span class="text-nowrap">144500 Fcfa</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-6 col-lg-6">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="card widget-flat">
+                        <div class="card-body">
+                            <div class="float-end">
+                                <i class="mdi mdi-magnify widget-icon"></i>
                             </div>
                             <h5 class="text-muted fw-normal mt-0" title="Number of Historique">Enquête Policière</h5>
                             <h3 class="mt-3 mb-3">36,254</h3>
@@ -464,26 +521,26 @@
                                 <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i> 5.27% dans la biblio</span>
                                 <span class="text-nowrap">144500 Fcfa</span>  
                             </p>
-                        </div> <!-- end card-body-->
-                    </div> <!-- end card-->
-                </div> <!-- end col-->
+                        </div>
+                    </div>
+                </div>
 
                 <div class="col-lg-6">
                     <div class="card widget-flat">
                         <div class="card-body">
                             <div class="float-end">
-                                <i class="mdi mdi-cart-plus widget-icon"></i>
+                                <i class="mdi mdi-book-open-page-variant widget-icon"></i>
                             </div>
-                            <h5 class="text-muted fw-normal mt-0" title="Number of Liste des Emprunts">Developpement Personnel</h5>
+                            <h5 class="text-muted fw-normal mt-0" title="Number of Liste des Emprunts">Autre</h5>
                             <h3 class="mt-3 mb-3">5,543</h3>
                             <p class="mb-0 text-muted">
                                 <span class="text-danger me-2"><i class="mdi mdi-arrow-down-bold"></i> 1.08%</span>
                                 <span class="text-nowrap">144500 Fcfa</span>
                             </p>
-                        </div> <!-- end card-body-->
-                    </div> <!-- end card-->
-                </div> <!-- end col-->
-            </div> <!-- end row -->
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <div class="row">
                 <div class="col-lg-6">
@@ -492,115 +549,66 @@
                             <div class="float-end">
                                 <i class="mdi mdi-currency-usd widget-icon"></i>
                             </div>
-                            <h5 class="text-muted fw-normal mt-0" title="Average Revenue">Revenue</h5>
+                            <h5 class="text-muted fw-normal mt-0" title="Average Revenue">Manga</h5>
                             <h3 class="mt-3 mb-3">$6,254</h3>
                             <p class="mb-0 text-muted">
-                                <span class="text-danger me-2"><i class="mdi mdi-arrow-down-bold"></i> 7.00%</span>
+                                <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i> 7.00%</span>
                                 <span class="text-nowrap">144500 Fcfa</span>
                             </p>
-                        </div> <!-- end card-body-->
-                    </div> <!-- end card-->
-                </div> <!-- end col-->
+                        </div>
+                    </div>
+                </div>
 
                 <div class="col-lg-6">
                     <div class="card widget-flat">
                         <div class="card-body">
                             <div class="float-end">
-                                <i class="mdi mdi-pulse widget-icon"></i>
+                                <i class="mdi mdi-chart-line widget-icon"></i>
                             </div>
-                            <h5 class="text-muted fw-normal mt-0" title="Growth">Growth</h5>
+                            <h5 class="text-muted fw-normal mt-0" title="Growth">Géologie</h5>
                             <h3 class="mt-3 mb-3">+ 30.56%</h3>
                             <p class="mb-0 text-muted">
                                 <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i> 4.87%</span>
                                 <span class="text-nowrap">144500 Fcfa</span>
                             </p>
-                        </div> <!-- end card-body-->
-                    </div> <!-- end card-->
-                </div> <!-- end col-->
-            </div> <!-- end row -->
-
-        </div> <!-- end col -->
-
-        
-        <div class="col-xl-5 col-lg-6">
-
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="card widget-flat">
-                        <div class="card-body">
-                            <div class="float-end">
-                                <i class="mdi mdi-account-multiple widget-icon"></i>
-                            </div>
-                            <h5 class="text-muted fw-normal mt-0" title="Number of Historique">Enquête Policière</h5>
-                            <h3 class="mt-3 mb-3">36,254</h3>
-                            <p class="mb-0 text-muted">
-                                <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i> 5.27% dans la biblio</span>
-                                <span class="text-nowrap">144500 Fcfa</span>  
-                            </p>
-                        </div> <!-- end card-body-->
-                    </div> <!-- end card-->
-                </div> <!-- end col-->
-
-                <div class="col-lg-6">
-                    <div class="card widget-flat">
-                        <div class="card-body">
-                            <div class="float-end">
-                                <i class="mdi mdi-cart-plus widget-icon"></i>
-                            </div>
-                            <h5 class="text-muted fw-normal mt-0" title="Number of Liste des Emprunts">Developpement Personnel</h5>
-                            <h3 class="mt-3 mb-3">5,543</h3>
-                            <p class="mb-0 text-muted">
-                                <span class="text-danger me-2"><i class="mdi mdi-arrow-down-bold"></i> 1.08%</span>
-                                <span class="text-nowrap">144500 Fcfa</span>
-                            </p>
-                        </div> <!-- end card-body-->
-                    </div> <!-- end card-->
-                </div> <!-- end col-->
-            </div> <!-- end row -->
-
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="card widget-flat">
-                        <div class="card-body">
-                            <div class="float-end">
-                                <i class="mdi mdi-currency-usd widget-icon"></i>
-                            </div>
-                            <h5 class="text-muted fw-normal mt-0" title="Average Revenue">Revenue</h5>
-                            <h3 class="mt-3 mb-3">$6,254</h3>
-                            <p class="mb-0 text-muted">
-                                <span class="text-danger me-2"><i class="mdi mdi-arrow-down-bold"></i> 7.00%</span>
-                                <span class="text-nowrap">144500 Fcfa</span>
-                            </p>
-                        </div> <!-- end card-body-->
-                    </div> <!-- end card-->
-                </div> <!-- end col-->
-
-                <div class="col-lg-6">
-                    <div class="card widget-flat">
-                        <div class="card-body">
-                            <div class="float-end">
-                                <i class="mdi mdi-pulse widget-icon"></i>
-                            </div>
-                            <h5 class="text-muted fw-normal mt-0" title="Growth">Growth</h5>
-                            <h3 class="mt-3 mb-3">+ 30.56%</h3>
-                            <p class="mb-0 text-muted">
-                                <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i> 4.87%</span>
-                                <span class="text-nowrap">144500 Fcfa</span>
-                            </p>
-                        </div> <!-- end card-body-->
-                    </div> <!-- end card-->
-                </div> <!-- end col-->
-            </div> <!-- end row -->
-
-        </div> <!-- end col -->
-
-        <div class="col-xl-7 col-lg-6">
-            <div class="card card-h-100">
-                
-            </div> <!-- end card-->
-
-        </div> <!-- end col -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
+</div>
+<!-- Add Fournisseur Modal -->
+<div class="modal fade" id="addFournisseurModal" tabindex="-1" aria-labelledby="addFournisseurModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addFournisseurModalLabel">Ajouter un Fournisseur</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="{% url 'add-fournisseur' %}">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="nom" class="form-label">Nom</label>
+                        <input type="text" class="form-control" id="nom" name="nom" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="adresse" class="form-label">Adresse</label>
+                        <textarea class="form-control" id="adresse" name="adresse" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="telephone" class="form-label">Téléphone</label>
+                        <input type="text" class="form-control" id="telephone" name="telephone" required>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}
