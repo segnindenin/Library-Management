@@ -2,316 +2,18 @@
 {% load static %}
 
 {% block content %}
-<div class="content">
-    <!-- Topbar Start -->
-    <div class="navbar-custom">
-        <ul class="list-unstyled topbar-menu float-end mb-0">
-            <li class="dropdown notification-list d-lg-none">
-                <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                    <i class="dripicons-search noti-icon"></i>
-                </a>
-                <div class="dropdown-menu dropdown-menu-animated dropdown-lg p-0">
-                    <form class="p-3">
-                        <input type="text" class="form-control" placeholder="Search ..." aria-label="Recipient's username">
-                    </form>
-                </div>
-            </li>
-            <li class="dropdown notification-list topbar-dropdown">
-                <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                    <img src="{% static 'assets/images/flags/us.jpg' %}" alt="user-image" class="me-0 me-sm-1" height="12"> 
-                    <span class="align-middle d-none d-sm-inline-block">English</span> <i class="mdi mdi-chevron-down d-none d-sm-inline-block align-middle"></i>
-                </a>
-                <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu">
-
-                    <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <img src="{% static 'assets/images/flags/germany.jpg' %}" alt="user-image" class="me-1" height="12"> <span class="align-middle">German</span>
-                    </a>
-
-                    <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <img src="{% static 'assets/images/flags/italy.jpg' %}" alt="user-image" class="me-1" height="12"> <span class="align-middle">Italian</span>
-                    </a>
-
-                    <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <img src="{% static 'assets/images/flags/spain.jpg' %}" alt="user-image" class="me-1" height="12"> <span class="align-middle">Spanish</span>
-                    </a>
-
-                    <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <img src="{% static 'assets/images/flags/russia.jpg' %}" alt="user-image" class="me-1" height="12"> <span class="align-middle">Russian</span>
-                    </a>
-
-                </div>
-            </li>
-
-            <li class="dropdown notification-list">
-                <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                    <i class="dripicons-bell noti-icon"></i>
-                    <span class="noti-icon-badge"></span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated dropdown-lg">
-
-                    <!-- item-->
-                    <div class="dropdown-item noti-title">
-                        <h5 class="m-0">
-                            <span class="float-end">
-                                <a href="javascript: void(0);" class="text-dark">
-                                    <small>Clear All</small>
-                                </a>
-                            </span>Notification
-                        </h5>
-                    </div>
-
-                    <div style="max-height: 230px;" data-simplebar="">
-                        <!-- item-->
-                        <a href="javascript:void(0);" class="dropdown-item notify-item">
-                            <div class="notify-icon bg-primary">
-                                <i class="mdi mdi-comment-account-outline"></i>
-                            </div>
-                            <p class="notify-details">Caleb Flakelar commented on Admin
-                                <small class="text-muted">1 min ago</small>
-                            </p>
-                        </a>
-
-                        <!-- item-->
-                        <a href="javascript:void(0);" class="dropdown-item notify-item">
-                            <div class="notify-icon bg-info">
-                                <i class="mdi mdi-account-plus"></i>
-                            </div>
-                            <p class="notify-details">New user registered.
-                                <small class="text-muted">5 hours ago</small>
-                            </p>
-                        </a>
-
-                        <!-- item-->
-                        <a href="javascript:void(0);" class="dropdown-item notify-item">
-                            <div class="notify-icon">
-                                <img src="{% static 'assets/images/users/avatar-2.jpg' %}" class="img-fluid rounded-circle" alt=""> </div>
-                            <p class="notify-details">Cristina Pride</p>
-                            <p class="text-muted mb-0 user-msg">
-                                <small>Hi, How are you? What about our next meeting</small>
-                            </p>
-                        </a>
-
-                        <!-- item-->
-                        <a href="javascript:void(0);" class="dropdown-item notify-item">
-                            <div class="notify-icon bg-primary">
-                                <i class="mdi mdi-comment-account-outline"></i>
-                            </div>
-                            <p class="notify-details">Caleb Flakelar commented on Admin
-                                <small class="text-muted">4 days ago</small>
-                            </p>
-                        </a>
-
-                        <!-- item-->
-                        <a href="javascript:void(0);" class="dropdown-item notify-item">
-                            <div class="notify-icon">
-                                <img src="{% static 'assets/images/users/avatar-4.jpg' %}" class="img-fluid rounded-circle" alt=""> </div>
-                            <p class="notify-details">Karen Robinson</p>
-                            <p class="text-muted mb-0 user-msg">
-                                <small>Wow ! this admin looks good and awesome design</small>
-                            </p>
-                        </a>
-
-                        <!-- item-->
-                        <a href="javascript:void(0);" class="dropdown-item notify-item">
-                            <div class="notify-icon bg-info">
-                                <i class="mdi mdi-heart"></i>
-                            </div>
-                            <p class="notify-details">Carlos Crouch liked
-                                <b>Admin</b>
-                                <small class="text-muted">13 days ago</small>
-                            </p>
-                        </a>
-                    </div>
-
-                    <!-- All-->
-                    <a href="javascript:void(0);" class="dropdown-item text-center text-primary notify-item notify-all">
-                        View All
-                    </a>
-
-                </div>
-            </li>
-
-            <li class="dropdown notification-list d-none d-sm-inline-block">
-                <a class="nav-link dropdown-toggle arrow-none" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                    <i class="dripicons-view-apps noti-icon"></i>
-                </a>
-                <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated dropdown-lg p-0">
-
-                    <div class="p-2">
-                        <div class="row g-0">
-                            <div class="col">
-                                <a class="dropdown-icon-item" href="#">
-                                    <img src="{% static 'assets/images/brands/slack.png' %}" alt="slack">
-                                    <span>Slack</span>
-                                </a>
-                            </div>
-                            <div class="col">
-                                <a class="dropdown-icon-item" href="#">
-                                    <img src="{% static 'assets/images/brands/github.png' %}" alt="Github">
-                                    <span>GitHub</span>
-                                </a>
-                            </div>
-                            <div class="col">
-                                <a class="dropdown-icon-item" href="#">
-                                    <img src="{% static 'assets/images/brands/dribbble.png' %}" alt="dribbble">
-                                    <span>Dribbble</span>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="row g-0">
-                            <div class="col">
-                                <a class="dropdown-icon-item" href="#">
-                                    <img src="{% static 'assets/images/brands/bitbucket.png' %}" alt="bitbucket">
-                                    <span>Bitbucket</span>
-                                </a>
-                            </div>
-                            <div class="col">
-                                <a class="dropdown-icon-item" href="#">
-                                    <img src="{% static 'assets/images/brands/dropbox.png' %}" alt="dropbox">
-                                    <span>Dropbox</span>
-                                </a>
-                            </div>
-                            <div class="col">
-                                <a class="dropdown-icon-item" href="#">
-                                    <img src="{% static 'assets/images/brands/g-suite.png' %}" alt="G Suite">
-                                    <span>G Suite</span>
-                                </a>
-                            </div>
-                        </div> <!-- end row-->
-                    </div>
-
-                </div>
-            </li>
-
-            <li class="notification-list">
-                <a class="nav-link end-bar-toggle" href="javascript: void(0);">
-                    <i class="dripicons-gear noti-icon"></i>
-                </a>
-            </li>
-
-            <li class="dropdown notification-list">
-                <a class="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                    <span class="account-user-avatar"> 
-                        <img src="{% static 'assets/images/users/avatar-1.jpg' %}" alt="user-image" class="rounded-circle">
-                    </span>
-                    <span>
-                        <span class="account-user-name">Soeng Souy</span>
-                        <span class="account-position">Founder</span>
-                    </span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu profile-dropdown">
-                    <!-- item-->
-                    <div class=" dropdown-header noti-title">
-                        <h6 class="text-overflow m-0">Welcome !</h6>
-                    </div>
-
-                    <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <i class="mdi mdi-account-circle me-1"></i>
-                        <span>My Account</span>
-                    </a>
-
-                    <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <i class="mdi mdi-account-edit me-1"></i>
-                        <span>Settings</span>
-                    </a>
-
-                    <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <i class="mdi mdi-lifebuoy me-1"></i>
-                        <span>Support</span>
-                    </a>
-
-                    <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <i class="mdi mdi-lock-outline me-1"></i>
-                        <span>Lock Screen</span>
-                    </a>
-
-                    <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <i class="mdi mdi-logout me-1"></i>
-                        <span>Logout</span>
-                    </a>
-                </div>
-            </li>
-
+{% if messages %}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
         </ul>
-        <button class="button-menu-mobile open-left">
-            <i class="mdi mdi-menu"></i>
-        </button>
-        <div class="app-search dropdown d-none d-lg-block">
-            <form>
-                <div class="input-group">
-                    <input type="text" class="form-control dropdown-toggle" placeholder="Search..." id="top-search">
-                    <span class="mdi mdi-magnify search-icon"></span>
-                    <button class="input-group-text btn-primary" type="submit">Search</button>
-                </div>
-            </form>
-
-            <div class="dropdown-menu dropdown-menu-animated dropdown-lg" id="search-dropdown">
-                <!-- item-->
-                <div class="dropdown-header noti-title">
-                    <h5 class="text-overflow mb-2">Found <span class="text-danger">17</span> results</h5>
-                </div>
-
-                <!-- item-->
-                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                    <i class="uil-notes font-16 me-1"></i>
-                    <span>Analytics Report</span>
-                </a>
-
-                <!-- item-->
-                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                    <i class="uil-life-ring font-16 me-1"></i>
-                    <span>How can I help you?</span>
-                </a>
-
-                <!-- item-->
-                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                    <i class="uil-cog font-16 me-1"></i>
-                    <span>User profile settings</span>
-                </a>
-
-                <!-- item-->
-                <div class="dropdown-header noti-title">
-                    <h6 class="text-overflow mb-2 text-uppercase">Users</h6>
-                </div>
-
-                <div class="notification-list">
-                    <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <div class="d-flex">
-                            <img class="d-flex me-2 rounded-circle" src="{% static 'assets/images/users/avatar-2.jpg' %}" alt="Generic placeholder image" height="32">
-                            <div class="w-100">
-                                <h5 class="m-0 font-14">Erwin Brown</h5>
-                                <span class="font-12 mb-0">UI Designer</span>
-                            </div>
-                        </div>
-                    </a>
-
-                    <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <div class="d-flex">
-                            <img class="d-flex me-2 rounded-circle" src="{% static 'assets/images/users/avatar-5.jpg' %}" alt="Generic placeholder image" height="32">
-                            <div class="w-100">
-                                <h5 class="m-0 font-14">Jacob Deo</h5>
-                                <span class="font-12 mb-0">Developer</span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
-    <!-- end Topbar -->
-    
+{% endif %}
+<div class="content">
+   
     <!-- Start Content-->
     <div class="container-fluid">
 
@@ -322,7 +24,10 @@
                     <div class="page-title-right">
                             <a href="javascript:void(0);" class="btn btn-danger mb-2" data-bs-toggle="modal" data-bs-target="#addFournisseurModal">
                                 <i class="mdi mdi-plus-circle me-2"></i> Ajouter un Fournisseur
-                            </a>  
+                            </a>
+                            <a href="javascript:void(0);" class="btn btn-danger mb-2" data-bs-toggle="modal" data-bs-target="#addPurchaseModal">
+                                <i class="mdi mdi-plus-circle me-2"></i> Nouvel Achats
+                            </a>   
                     </div>
                     <h4 class="page-title">Dashboard</h4>
                 </div>
@@ -331,75 +36,26 @@
         
         <div class="row">
             <div class="col-xl-5 col-lg-6">
-
                 <div class="row">
+                    <!-- Afficher les 4 premières classifications -->
+                    {% for classification, data in first_four_classifications %}
                     <div class="col-lg-6">
                         <div class="card widget-flat">
                             <div class="card-body">
                                 <div class="float-end">
                                     <i class="mdi mdi-book widget-icon"></i>
                                 </div>
-                                <h5 class="text-muted fw-normal mt-0" title="Number of Historique">Fiction</h5>
-                                <h3 class="mt-3 mb-3">nbre_livre</h3>
+                                <h5 class="text-muted fw-normal mt-0" title="Classification">{{ classification }}</h5>
+                                <h3 class="mt-3 mb-3">{{ data.nbre_livre }}</h3>
                                 <p class="mb-0 text-muted">
-                                    <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i> per_biblio %</span>
-                                    <span class="text-nowrap">cout_livre Fcfa</span>  
+                                    <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i>{{ data.per_biblio|floatformat:2 }}%</span>
+                                    <span class="text-nowrap">{{ data.cost|floatformat:2 }} Fcfa</span>  
                                 </p>
                             </div> <!-- end card-body-->
                         </div> <!-- end card-->
                     </div> <!-- end col-->
-
-                    <div class="col-lg-6">
-                        <div class="card widget-flat">
-                            <div class="card-body">
-                                <div class="float-end">
-                                    <i class="mdi mdi-cross widget-icon"></i>
-                                </div>
-                                <h5 class="text-muted fw-normal mt-0" title="Number of Liste des Emprunts">Théologie</h5>
-                                <h3 class="mt-3 mb-3">nbre_livre</h3>
-                                <p class="mb-0 text-muted">
-                                    <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i>per_biblio %</span>
-                                    <span class="text-nowrap">cout_livre Fcfa</span>
-                                </p>
-                            </div> <!-- end card-body-->
-                        </div> <!-- end card-->
-                    </div> <!-- end col-->
+                    {% endfor %}
                 </div> <!-- end row -->
-
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="card widget-flat">
-                            <div class="card-body">
-                                <div class="float-end">
-                                    <i class="mdi mdi-flask-outline widget-icon"></i>
-                                </div>
-                                <h5 class="text-muted fw-normal mt-0" title="Average Revenue">Science</h5>
-                                <h3 class="mt-3 mb-3">nbre_livre</h3>
-                                <p class="mb-0 text-muted">
-                                    <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i>per_biblio %</span>
-                                    <span class="text-nowrap">cout_livre Fcfa</span>
-                                </p>
-                            </div> <!-- end card-body-->
-                        </div> <!-- end card-->
-                    </div> <!-- end col-->
-
-                    <div class="col-lg-6">
-                        <div class="card widget-flat">
-                            <div class="card-body">
-                                <div class="float-end">
-                                    <i class="mdi mdi-history widget-icon"></i>
-                                </div>
-                                <h5 class="text-muted fw-normal mt-0" title="Growth">Histoire</h5>
-                                <h3 class="mt-3 mb-3">nbre_livre</h3>
-                                <p class="mb-0 text-muted">
-                                    <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i>per_biblio %</span>
-                                    <span class="text-nowrap">cout_livre Fcfa</span>
-                                </p>
-                            </div> <!-- end card-body-->
-                        </div> <!-- end card-->
-                    </div> <!-- end col-->
-                </div> <!-- end row -->
-
             </div> <!-- end col -->
 
             <div class="col-xl-7 col-lg-6">
@@ -432,152 +88,30 @@
             </div> <!-- end col -->
         </div>
 
+        <div class="row">
+            <!-- Afficher les classifications à partir de la 5ème -->
+            {% for classification, data in remaining_classifications %}
+            <div class="col-lg-6">
+                <div class="card widget-flat">
+                    <div class="card-body">
+                        <div class="float-end">
+                            <i class="mdi mdi-palette widget-icon"></i>
+                        </div>
+                        <h5 class="text-muted fw-normal mt-0" title="Number of Historique">{{ classification }}</h5>
+                        <h3 class="mt-3 mb-3">{{ data.nbre_livre }}</h3>
+                        <p class="mb-0 text-muted">
+                            <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i>{{ data.per_biblio|floatformat:2 }}% dans la biblio</span>
+                            <span class="text-nowrap">{{ data.cost|floatformat:2 }} Fcfa</span>  
+                        </p>
+                    </div> <!-- end card-body-->
+                </div> <!-- end card-->
+            </div> <!-- end col-->
+            {% if forloop.counter|divisibleby:2 %}
+            </div><div class="row">
+            {% endif %}
+            {% endfor %}
+        </div> <!-- end row -->
     </div>
-    <!-- container -->
-
-    
-    <div class="row">
-        <div class="col-xl-6 col-lg-6">
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="card widget-flat">
-                        <div class="card-body">
-                            <div class="float-end">
-                                <i class="mdi mdi-palette widget-icon"></i>
-                            </div>
-                            <h5 class="text-muted fw-normal mt-0" title="Number of Historique">Art</h5>
-                            <h3 class="mt-3 mb-3">36,254</h3>
-                            <p class="mb-0 text-muted">
-                                <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i> 5.27% dans la biblio</span>
-                                <span class="text-nowrap">144500 Fcfa</span>  
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-6">
-                    <div class="card widget-flat">
-                        <div class="card-body">
-                            <div class="float-end">
-                                <i class="mdi mdi-school widget-icon"></i>
-                            </div>
-                            <h5 class="text-muted fw-normal mt-0" title="Number of Liste des Emprunts">Enseignement</h5>
-                            <h3 class="mt-3 mb-3">5,543</h3>
-                            <p class="mb-0 text-muted">
-                                <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i> 1.08%</span>
-                                <span class="text-nowrap">144500 Fcfa</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="card widget-flat">
-                        <div class="card-body">
-                            <div class="float-end">
-                                <i class="mdi mdi-laptop widget-icon"></i>
-                            </div>
-                            <h5 class="text-muted fw-normal mt-0" title="Average Revenue">Technologie</h5>
-                            <h3 class="mt-3 mb-3">$6,254</h3>
-                            <p class="mb-0 text-muted">
-                                <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i> 7.00%</span>
-                                <span class="text-nowrap">144500 Fcfa</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-6">
-                    <div class="card widget-flat">
-                        <div class="card-body">
-                            <div class="float-end">
-                                <i class="mdi mdi-heart-pulse widget-icon"></i>
-                            </div>
-                            <h5 class="text-muted fw-normal mt-0" title="Growth">Développement Personnel</h5>
-                            <h3 class="mt-3 mb-3">+ 30.56%</h3>
-                            <p class="mb-0 text-muted">
-                                <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i> 4.87%</span>
-                                <span class="text-nowrap">144500 Fcfa</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-xl-6 col-lg-6">
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="card widget-flat">
-                        <div class="card-body">
-                            <div class="float-end">
-                                <i class="mdi mdi-magnify widget-icon"></i>
-                            </div>
-                            <h5 class="text-muted fw-normal mt-0" title="Number of Historique">Enquête Policière</h5>
-                            <h3 class="mt-3 mb-3">36,254</h3>
-                            <p class="mb-0 text-muted">
-                                <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i> 5.27% dans la biblio</span>
-                                <span class="text-nowrap">144500 Fcfa</span>  
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-6">
-                    <div class="card widget-flat">
-                        <div class="card-body">
-                            <div class="float-end">
-                                <i class="mdi mdi-book-open-page-variant widget-icon"></i>
-                            </div>
-                            <h5 class="text-muted fw-normal mt-0" title="Number of Liste des Emprunts">Autre</h5>
-                            <h3 class="mt-3 mb-3">5,543</h3>
-                            <p class="mb-0 text-muted">
-                                <span class="text-danger me-2"><i class="mdi mdi-arrow-down-bold"></i> 1.08%</span>
-                                <span class="text-nowrap">144500 Fcfa</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="card widget-flat">
-                        <div class="card-body">
-                            <div class="float-end">
-                                <i class="mdi mdi-currency-usd widget-icon"></i>
-                            </div>
-                            <h5 class="text-muted fw-normal mt-0" title="Average Revenue">Manga</h5>
-                            <h3 class="mt-3 mb-3">$6,254</h3>
-                            <p class="mb-0 text-muted">
-                                <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i> 7.00%</span>
-                                <span class="text-nowrap">144500 Fcfa</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-6">
-                    <div class="card widget-flat">
-                        <div class="card-body">
-                            <div class="float-end">
-                                <i class="mdi mdi-chart-line widget-icon"></i>
-                            </div>
-                            <h5 class="text-muted fw-normal mt-0" title="Growth">Géologie</h5>
-                            <h3 class="mt-3 mb-3">+ 30.56%</h3>
-                            <p class="mb-0 text-muted">
-                                <span class="text-success me-2"><i class="mdi mdi-arrow-up-bold"></i> 4.87%</span>
-                                <span class="text-nowrap">144500 Fcfa</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
 </div>
 <!-- Add Fournisseur Modal -->
 <div class="modal fade" id="addFournisseurModal" tabindex="-1" aria-labelledby="addFournisseurModalLabel" aria-hidden="true">
@@ -605,6 +139,58 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="addPurchaseModal" tabindex="-1" aria-labelledby="addPurchaseModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addPurchaseModal">Marquer un Nouvel Achat</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="{% url 'add-purchase' %}">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="isbn_livre" class="form-label">ISBN Livre</label>
+                        <select class="form-control" id="isbn_livre" name="isbn_livre" required>
+                            {% for livre in livres_dispo %}
+                                <option value="{{ livre.isbn }}">{{ livre.titre }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="fournisseur" class="form-label">Fournisseur</label>
+                        <select class="form-control" id="fournisseur" name="fournisseur" required>
+                            {% for fournisseur in fournisseurs %}
+                                <option value="{{ fournisseur.id_fournisseur }}">{{ fournisseur.nom }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="date_achat" class="form-label">Date d'Achat</label>
+                        <input type="date" class="form-control" id="date_achat" name="date_achat" value="{{ today_date }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="prix_achat" class="form-label">Prix d'Achat</label>
+                        <input type="number" step="0.01" class="form-control" id="prix_achat" name="prix_achat" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="quantite" class="form-label">Quantité</label>
+                        <input type="number" class="form-control" id="quantite" name="quantite" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editeur" class="form-label">Éditeur</label>
+                        <input type="text" class="form-control" id="editeur" name="editeur" required>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Valider</button>
                     </div>
                 </form>
             </div>

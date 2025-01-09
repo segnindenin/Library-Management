@@ -1,10 +1,10 @@
 from django import forms
-from .models import Auteur, Emprunt, Livre, Fournisseur, Client
+from library.models import *
 
 class LivreForm(forms.ModelForm):
     class Meta:
         model = Livre
-        fields = ['isbn', 'titre', 'auteur', 'editeur', 'classification', 'date_achat', 'prix_achat', 'quantite', 'couverture','fournisseur', ]
+        fields = ['isbn', 'titre', 'auteur', 'classification', 'couverture']
         widgets = {
             'auteur': forms.CheckboxSelectMultiple(), 
         }
@@ -17,7 +17,7 @@ class FournisseurForm(forms.ModelForm):
 class AdherentForm(forms.ModelForm):
     class Meta:
         model = Client
-        fields = '__all__'
+        fields = ['n_cni_reci', 'nom', 'prenom', 'adresse', 'telephone']
 
 class AuteurForm(forms.ModelForm):
     class Meta:
@@ -31,3 +31,13 @@ class EmpruntForm(forms.ModelForm):
         widgets = {
             'livres': forms.CheckboxSelectMultiple(), 
         }
+
+class AchatsForm(forms.ModelForm):
+    class Meta:
+        model = Achat
+        fields = ['isbn_livre', 'fournisseur', 'date_achat', 'prix_achat', 'quantite', 'editeur']
+
+class LivreEmpruntForm(forms.ModelForm):
+    class Meta:
+        model = LivreEmprunt
+        fields = '__all__'
