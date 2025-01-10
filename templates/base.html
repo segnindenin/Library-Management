@@ -108,6 +108,20 @@
                 }
             }
         </script>
-
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const retourEmpruntModal = document.getElementById('retourEmpruntModal');
+                retourEmpruntModal.addEventListener('show.bs.modal', function (event) {
+                    const button = event.relatedTarget; // Bouton qui a déclenché l'ouverture
+                    const idEmprunt = button.getAttribute('data-id'); // Récupérer l'ID depuis l'attribut data-id
+            
+                    if (idEmprunt) { // Vérifiez que l'ID existe
+                        // Mettre à jour l'action du formulaire
+                        const form = retourEmpruntModal.querySelector('form');
+                        form.action = `/retour-book/${idEmprunt}`;
+                    }
+                });
+            });                       
+        </script>
     </body>
 </html>

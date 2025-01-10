@@ -14,6 +14,7 @@ urlpatterns = [
     path('add-adherent/', views.add_adherent, name='add-adherent'),
     path('book-emprunt/', views.book_emprunt, name="book-emprunt"),
     path('add-emprunt/', views.add_emprunt, name='add-emprunt'),
+    path('retour-book/<int:id_emprunt>', views.return_book, name='retour-book'),
     path('book-list/', views.book_list, name="book-list"),
     path('add-book/', views.add_book, name='add-book'),
     path('add-purchase/', views.new_purchase, name='add-purchase'),

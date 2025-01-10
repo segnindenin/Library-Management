@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.db.models import Count
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from library.models import *
 from .forms import *
 
@@ -36,8 +36,7 @@ def home(request):
         'livres_dispo': livres_dispo,
         'fournisseurs': fournisseurs
     })
-
-    
+   
 def auteurs(request):
     auteurs = Auteur.objects.all()
     auteurs_livres = []
@@ -164,6 +163,7 @@ def book_list(request):
         'fournisseurs':Fournisseur.objects.all(),
         'auteurs':Auteur.objects.all(),
         'livres': Livre.objects.all(),
+        'emprunts': Emprunt.objects.all(),
         'form': form})
 
 def add_book(request):
@@ -210,3 +210,30 @@ def new_purchase(request):
 
 def history(request):
     return render(request, 'history.html')
+
+def return_book(request, id_emprunt):
+    emprunt = get_object_or_404(Emprunt, id_emprunt=id_emprunt)
+    if request.method == 'POST':
+        form = LivreEmpruntForm(request.POST)
+        if form.is_valid():
+            for livre in emprunt.livres.all():
+                LivreEmprunt.objects.create(
+                    id_emprunt=emprunt,
+                    isbn_livre=livre,
+                    date_retour_effectif=form.cleaned_data['date_retour_effectif'],
+                    condition=form.cleaned_data['condition']
+                )
+                # Mise à jour des livres
+                livre.nbre_livre_dispo += 1
+                livre.save()
+            emprunt.etat = 'rendu'
+            emprunt.save()
+            messages.success(request, "Livre(s) retourné(s) avec succès.")
+            return redirect('book-emprunt')
+    else:
+        form = LivreEmpruntForm()
+    return render(request, 'return_book.html', {
+        'form': form,
+        'emprunts': emprunt,
+        'livres': emprunt.livres.all(),
+    })

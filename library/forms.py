@@ -40,4 +40,4 @@ class AchatsForm(forms.ModelForm):
 class LivreEmpruntForm(forms.ModelForm):
     class Meta:
         model = LivreEmprunt
-        fields = '__all__'
+        fields = ['date_retour_effectif', 'condition']

@@ -34,7 +34,6 @@
             </div>
         </div>     
         <!-- end page title --> 
-
         <div class="row">
             <div class="col-12">
                 <div class="card">
@@ -69,7 +68,6 @@
                                 </div>
                             </div><!-- end col-->
                         </div>
-
                         <div class="table-responsive">
                             <table class="table table-centered mb-0">
                                 <thead class="table-light">
@@ -86,7 +84,7 @@
                                         <th>Date de Retour Prévue</th>
                                         <th>Livres</th>
                                         <th>Etat</th>
-                                        <th style="width: 125px;">Action</th>
+                                        <th style="width: 125px;">Marquer</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -119,9 +117,11 @@
                                             {% endif %}
                                         </td>
                                         <td>
-                                            <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-eye"></i></a>
-                                            <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
-                                            <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
+                                            <a href="#" class="action-icon" data-id="{{ emprunt.id_emprunt }}" 
+                                                data-bs-toggle="modal" data-bs-target="#retourEmpruntModal" onclick="setEmpruntId({{ emprunt.id_emprunt }})"> 
+                                                <i class="mdi mdi-square-edit-outline"></i>
+                                            </a>
+                                                                                    
                                         </td>
                                     </tr>
                                     {% endfor %}
@@ -144,7 +144,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="addEmpruntModalLabel">Marquer un Emprunt</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
             </div>
             <div class="modal-body">
                 <form method="POST" action="{% url 'add-emprunt' %}">
@@ -160,17 +160,14 @@
                             {% endfor %}
                         </select>
                     </div>
-                    
                     <div class="mb-3">
                         <label for="date_emprunt" class="form-label">Date d'Emprunt</label>
                         <input type="date" class="form-control" id="date_emprunt" name="date_emprunt" required>
                     </div>
-                    
                     <div class="mb-3">
                         <label for="date_retour_prevue" class="form-label">Date de Retour Prévue</label>
                         <input type="date" class="form-control" id="date_retour_prevue" name="date_retour_prevue" required>
                     </div>
-                    
                     <div class="mb-3">
                         <label for="etat" class="form-label">État</label>
                         <select class="form-control" id="etat" name="etat" required>
@@ -179,13 +176,10 @@
                             <option value="rendu">Rendu</option>
                         </select>
                     </div>
-                    
                     <div class="mb-3">
                         <label for="livres" class="form-label">Livres</label>
-                        
                         <!-- Champ de recherche pour filtrer les livres -->
                         <input type="text" id="livres-search" class="form-control" placeholder="Rechercher un livre..." onkeyup="filterOptions('livres-search', 'livres')">
-                        
                         <!-- Liste déroulante des livres -->
                         <select multiple class="form-control" id="livres" name="livres" required>
                             {% for livre in livres %}
@@ -194,7 +188,6 @@
                         </select>
                         <small class="form-text text-muted">Maintenez la touche Ctrl (ou Cmd sur Mac) pour sélectionner plusieurs livres.</small>
                     </div>
-                    
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
                         <button type="submit" class="btn btn-primary">Enregistrer</button>
@@ -205,5 +198,42 @@
     </div>
 </div>
 
+<!-- Retour Emprunt Modal -->
+<div class="modal fade" id="retourEmpruntModal" tabindex="-1" aria-labelledby="retourEmpruntModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="retourEmpruntModalLabel">Marquer un Emprunt</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="{% url 'retour-book' 0 %}" id="retourEmpruntForm">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="date_retour_effectif" class="form-label">Date de Retour Effectif</label>
+                        <input type="date" class="form-control" id="date_retour_effectif" name="date_retour_effectif" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="condition" class="form-label">Condition</label>
+                        <select class="form-control" id="condition" name="condition" required>
+                            <option value="bonne">Bonne</option>
+                            <option value="mauvaise">Mauvaise</option>
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                        <button type="submit" class="btn btn-primary">Enregistrer</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
+<script>
+    function setEmpruntId(id) {
+        const form = document.getElementById('retourEmpruntForm');
+        form.action = form.action.replace('0', id);
+    }
+</script>
 {% endblock %}
