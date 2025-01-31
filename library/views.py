@@ -38,14 +38,26 @@ def home(request):
     })
    
 def auteurs(request):
+    # Récupérer la classification sélectionnée (vide par défaut)
+    classification = request.GET.get('classification', '')
+
+    # Récupérer tous les auteurs
     auteurs = Auteur.objects.all()
     auteurs_livres = []
+
     for auteur in auteurs:
-        livres = auteur.LivreAuteur.all()
+        # Filtrer les livres par classification si une classification est sélectionnée
+        if classification:
+            livres = auteur.LivreAuteur.filter(classification=classification)
+        else:
+            livres = auteur.LivreAuteur.all()
         auteurs_livres.append((auteur, livres))
+
+    # Calculs pour les statistiques
     total_livres = Achat.objects.count()
     livres_empruntes = Emprunt.objects.filter(etat__in=['emprunté', 'non rendu']).count()
     pourcentage_livres_empruntes = round((livres_empruntes / total_livres * 100), 2) if total_livres > 0 else 0
+
     return render(request, 'auteurs.html', {
         'auteurs_livres': auteurs_livres,
         'nbres_auteurs': auteurs.count(),
@@ -53,8 +65,10 @@ def auteurs(request):
         'nbres_adherents': Client.objects.count(),
         'nbres_exemplaires': Achat.objects.count(),
         'nbres_livres_empruntes': livres_empruntes,
-        'pourcentage_livres_empruntes': pourcentage_livres_empruntes
+        'pourcentage_livres_empruntes': pourcentage_livres_empruntes,
+        'selected_classification': classification,  # Pour garder l'option sélectionnée
     })
+
 
 def add_auteur(request):
     if request.method == 'POST':
@@ -75,13 +89,13 @@ def adherent_list(request):
     adherents = Client.objects.all()
     return render(request, 'adherent_list.html', {'adherents': adherents})
 
-def update_adherent(request, adherent_id):
-    adherent = Client.objects.get(id=adherent_id)
+def edit_adherent(request, n_cni_reci):
+    adherent = get_object_or_404(Client, n_cni_reci=n_cni_reci)
     if request.method == 'POST':
         form = AdherentForm(request.POST, instance=adherent)
         if form.is_valid():
             form.save()
-            messages.success(request, "Lecteur mis à jour avec succès.")
+            messages.success(request, "Adhérent mis à jour avec succès.")
             return redirect('adherent-list')
         else:
             messages.error(request, "Erreur lors de la mise à jour de l'adhérent.")
@@ -89,13 +103,26 @@ def update_adherent(request, adherent_id):
         form = AdherentForm(instance=adherent)
     return render(request, 'update_adherent.html', {'form': form, 'adherent': adherent})
 
-def delete_adherent(request, adherent_id):
-    adherent = Client.objects.get(id=adherent_id)
+def update_adherent(request, n_cni_reci):
+    adherent = get_object_or_404(Client, n_cni_reci=n_cni_reci)
     if request.method == 'POST':
-        adherent.delete()
-        messages.success(request, "Lecteur supprimé avec succès.")
-        return redirect('adherent-list')
-    return render(request, 'delete_adherent.html', {'adherent': adherent})
+        form = AdherentForm(request.POST, instance=adherent)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Adhérent mis à jour avec succès.")
+            return redirect('adherent-list')
+        else:
+            messages.error(request, "Erreur lors de la mise à jour de l'adhérent.")
+    else:
+        form = AdherentForm(instance=adherent)
+    return render(request, 'adherent_form.html', {'form': form, 'adherent': adherent})
+
+
+def delete_adherent(request, n_cni_reci):
+    adherent = Client.objects.get(n_cni_reci=n_cni_reci)    
+    adherent.delete()
+    messages.success(request, "Lecteur supprimé avec succès.")
+    return redirect('adherent-list')
 
 def add_adherent(request):
     if request.method == 'POST':
@@ -112,12 +139,20 @@ def book_emprunt(request):
     clients = Client.objects.all()
     livres = Livre.objects.all()
     form = EmpruntForm()
+    # Récupération du filtre depuis la requête GET (s'il existe)
+    etat_filter = request.GET.get('etat', None)
+    # Appliquer le filtre sur les emprunts si 'etat' est spécifié
+    if etat_filter:
+        emprunts = Emprunt.objects.filter(etat=etat_filter)
+    else:
+        emprunts = Emprunt.objects.all()
     return render(request, 'book_emprunt.html', {
         'clients': clients,
-        'emprunts': Emprunt.objects.all(),
+        'emprunts': emprunts,
         'livres': livres,
         'form': form
     })
+
 
 def add_emprunt(request):
     clients = Client.objects.all()
@@ -159,10 +194,11 @@ def add_emprunt(request):
 
 def book_list(request):
     form = LivreForm()
+    livres = Livre.objects.all()
     return render(request, 'book_list.html', {
         'fournisseurs':Fournisseur.objects.all(),
         'auteurs':Auteur.objects.all(),
-        'livres': Livre.objects.all(),
+        'livres': livres,
         'emprunts': Emprunt.objects.all(),
         'form': form})
 
@@ -208,8 +244,10 @@ def new_purchase(request):
         form = FournisseurForm()
     return render(request, 'index.html', {'form': form})
 
+
 def history(request):
-    return render(request, 'history.html')
+    achats = Achat.objects.select_related('isbn_livre', 'fournisseur').all()
+    return render(request, 'history.html', {'achats': achats})
 
 def return_book(request, id_emprunt):
     emprunt = get_object_or_404(Emprunt, id_emprunt=id_emprunt)
@@ -223,13 +261,11 @@ def return_book(request, id_emprunt):
                     date_retour_effectif=form.cleaned_data['date_retour_effectif'],
                     condition=form.cleaned_data['condition']
                 )
-                # Mise à jour des livres
-                livre.nbre_livre_dispo += 1
                 livre.save()
             emprunt.etat = 'rendu'
             emprunt.save()
             messages.success(request, "Livre(s) retourné(s) avec succès.")
-            return redirect('book-emprunt')
+            return redirect('book-list')
     else:
         form = LivreEmpruntForm()
     return render(request, 'return_book.html', {

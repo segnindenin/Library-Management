@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addAdherentModalLabel">Mise à Jour</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="{% url 'update-adherent' adherent.n_cni_reci %}">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="id_nom" class="form-label">Nom</label>
+                        {{ form.nom }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_prenom" class="form-label">Prénom</label>
+                        {{ form.prenom }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_nbre_livre_emprunte" class="form-label">Nombre de livres empruntés</label>
+                        {{ form.nbre_livre_emprunte }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_adresse" class="form-label">Adresse</label>
+                        {{ form.adresse }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="id_telephone" class="form-label">Téléphone</label>
+                        {{ form.telephone }}
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-3">Mettre à jour</button>
+                </form> 
+            </div>
+        </div>
+    </div>
+{% endblock %}

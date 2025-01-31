@@ -14,11 +14,8 @@
 {% endif %}
 
 <div class="content">
-
-    <!-- Start Content-->
     <div class="container-fluid">
-        
-        <!-- start page title -->
+        <!-- Start page title -->
         <div class="row">
             <div class="col-12">
                 <div class="page-title-box">
@@ -39,35 +36,37 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="row mb-2">
-                            
                             <div class="col-xl-8">
-                                <form class="row gy-2 gx-2 align-items-center justify-content-xl-start justify-content-between">
+                                <form class="row gy-2 gx-2 align-items-center justify-content-xl-start justify-content-between" method="GET">
                                     <div class="col-auto">
                                         <label for="inputPassword2" class="visually-hidden">Search</label>
-                                        <input type="search" class="form-control" id="inputPassword2" placeholder="Search...">
+                                        <input type="search" class="form-control" id="inputPassword2" placeholder="Search..." name="search">
                                     </div>
                                     <div class="col-auto">
                                         <div class="d-flex align-items-center">
-                                            <label for="status-select" class="me-2">Status</label>
-                                            <select class="form-select" id="status-select">
-                                                <option selected="">Etat...</option>
-                                                <option value="1">Rendu</option>
-                                                <option value="1">Non Rendu</option>
+                                            <label for="status-select" class="me-2">Etat</label>
+                                            <select class="form-select" id="status-select" name="etat">
+                                                <option value="">Etat...</option>
+                                                <option value="emprunté" {% if request.GET.etat == "emprunté" %}selected{% endif %}>Emprunté</option>
+                                                <option value="rendu" {% if request.GET.etat == "rendu" %}selected{% endif %}>Rendu</option>
                                             </select>
                                         </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <button type="submit" class="btn btn-primary">Filtrer</button>
                                     </div>
                                 </form>                            
                             </div>
                             <div class="col-xl-4">
                                 <div class="text-xl-end mt-xl-0 mt-2">
-                                    <div class="text-xl-end mt-xl-0 mt-2">
-                                        <button type="button" class="btn btn-danger mb-2 me-2" data-bs-toggle="modal" data-bs-target="#addEmpruntModal">
-                                            <i class="mdi mdi-basket me-1"></i> Marquer un Emprunt
-                                        </button>
-                                    </div>                                    
-                                </div>
+                                    <button type="button" class="btn btn-danger mb-2 me-2" data-bs-toggle="modal" data-bs-target="#addEmpruntModal">
+                                        <i class="mdi mdi-basket me-1"></i> Marquer un Emprunt
+                                    </button>
+                                </div>                                    
                             </div><!-- end col-->
                         </div>
+
+                        <!-- Table with emprunts -->
                         <div class="table-responsive">
                             <table class="table table-centered mb-0">
                                 <thead class="table-light">
@@ -120,8 +119,7 @@
                                             <a href="#" class="action-icon" data-id="{{ emprunt.id_emprunt }}" 
                                                 data-bs-toggle="modal" data-bs-target="#retourEmpruntModal" onclick="setEmpruntId({{ emprunt.id_emprunt }})"> 
                                                 <i class="mdi mdi-square-edit-outline"></i>
-                                            </a>
-                                                                                    
+                                            </a>                                                                                    
                                         </td>
                                     </tr>
                                     {% endfor %}
@@ -133,10 +131,9 @@
             </div> <!-- end col -->
         </div>
         <!-- end row --> 
-        
     </div> <!-- container -->
-
 </div> <!-- content -->
+
 
 <!-- Add Emprunt Modal -->
 <div class="modal fade" id="addEmpruntModal" tabindex="-1" aria-labelledby="addEmpruntModalLabel" aria-hidden="true">
@@ -207,7 +204,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form method="POST" action="{% url 'retour-book' 0 %}" id="retourEmpruntForm">
+                <form method="POST" action="{% url 'retour-book' 0000 %}" id="retourEmpruntForm">
                     {% csrf_token %}
                     <div class="mb-3">
                         <label for="date_retour_effectif" class="form-label">Date de Retour Effectif</label>
@@ -233,7 +230,7 @@
 <script>
     function setEmpruntId(id) {
         const form = document.getElementById('retourEmpruntForm');
-        form.action = form.action.replace('0', id);
+        form.action = form.action.replace('0000', id);
     }
 </script>
 {% endblock %}

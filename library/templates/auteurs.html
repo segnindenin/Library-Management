@@ -12,6 +12,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 {% endif %}
+
 <div class="content">
     <!-- Start Content-->
     <div class="container-fluid">
@@ -34,22 +35,28 @@
         <!-- end page title --> 
         <div class="row mb-2">
             <div class="col-sm-8">
-            <form class="row g-2">
-                <div class="col-auto">
-                <input type="search" class="form-control" id="searchInput" placeholder="Rechercher un auteur">
-                </div>
-                <div class="col-auto">
-                <select class="form-select" id="status-select">
-                    <option value="" selected="">Classification du livre</option>
-                    <option value="1">Paid</option>
-                    <option value="2">Awaiting Authorization</option>
-                    <option value="3">Payment failed</option>
-                    <option value="4">Cash On Delivery</option>
-                    <option value="5">Fulfilled</option>
-                    <option value="6">Unfulfilled</option>
-                </select>
-                </div>
-            </form>
+                <form class="row g-2" method="get" action="{% url 'auteurs' %}">
+                    <div class="col-auto">
+                        <input type="search" class="form-control" id="searchInput" name="search" placeholder="Rechercher un auteur">
+                    </div>
+                    <div class="col-auto">
+                        <select class="form-select" id="status-select" name="classification">
+                            <option value="" {% if not selected_classification %}selected{% endif %}>Classification du livre</option>
+                            <option value="Théologie" {% if selected_classification == "Théologie" %}selected{% endif %}>Théologie</option>
+                            <option value="Science" {% if selected_classification == "Science" %}selected{% endif %}>Science</option>
+                            <option value="Histoire" {% if selected_classification == "Histoire" %}selected{% endif %}>Histoire</option>
+                            <option value="Enseignement" {% if selected_classification == "Enseignement" %}selected{% endif %}>Enseignement</option>
+                            <option value="Technologie" {% if selected_classification == "Technologie" %}selected{% endif %}>Technologie</option>
+                            <option value="Manga" {% if selected_classification == "Manga" %}selected{% endif %}>Manga</option>
+                            <option value="Developpement Personnel" {% if selected_classification == "Developpement Personnel" %}selected{% endif %}>Développement Personnel</option>
+                            <option value="Enquête Policière" {% if selected_classification == "Enquête Policière" %}selected{% endif %}>Enquête Policière</option>
+                        </select>
+                    </div>
+                    <div class="col-auto">
+                        <button type="submit" class="btn btn-primary">Filtrer</button>
+                    </div>
+                </form>
+                
             </div>
             <div class="col-sm-4 text-end">
             <a href="javascript:void(0);" class="btn btn-danger mb-2" data-bs-toggle="modal" data-bs-target="#addAuteurModal">
@@ -111,405 +118,47 @@
         <!-- end row-->
 
         <div class="row">
-            <div class="col-xl-4 col-lg-12">
-                <div class="card">
-                    <div class="card-body">
-                        <a href="" class="p-0 float-end">nbres Livres <i class="mdi mdi-download ms-1"></i></a>
-                        <h4 class="header-title mt-1 mb-3">Auteur</h4>
-
-                        <div class="table-responsive">
-                            <table class="table table-sm table-centered mb-0 font-14">
-                                <thead class="table-light">
-                                    <tr>
-                                        <th>Livres</th>
-                                        <th style="width: 30%;">Classification</th>
-                                        <th style="width: 30%;">Disponible</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>0-30</td>
-                                        <td>2,250</td>
-                                        <td>4,250</td>
-                                    </tr>
-                                    <tr>
-                                        <td>31-60</td>
-                                        <td>1,501</td>
-                                        <td>2,050</td>
-                                    </tr>
-                                    <tr>
-                                        <td>61-120</td>
-                                        <td>750</td>
-                                        <td>1,600</td>
-                                    </tr>
-                                    <tr>
-                                        <td>121-240</td>
-                                        <td>540</td>
-                                        <td>1,040</td>  
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div> <!-- end table-responsive-->
-                    </div> <!-- end card-body-->
-                </div> <!-- end card-->
-            </div> <!-- end col-->
-
-            <div class="col-xl-4 col-lg-12">
-                <div class="card">
-                    <div class="card-body">
-                        <a href="" class="p-0 float-end">nbres Livres <i class="mdi mdi-download ms-1"></i></a>
-                        <h4 class="header-title mt-1 mb-3">Auteur</h4>
-
-                        <div class="table-responsive">
-                            <table class="table table-sm table-centered mb-0 font-14">
-                                <thead class="table-light">
-                                    <tr>
-                                        <th>Livres</th>
-                                        <th style="width: 30%;">Classification</th>
-                                        <th style="width: 30%;">Disponible</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>0-30</td>
-                                        <td>2,250</td>
-                                        <td>4,250</td>
-                                    </tr>
-                                    <tr>
-                                        <td>31-60</td>
-                                        <td>1,501</td>
-                                        <td>2,050</td>
-                                    </tr>
-                                    <tr>
-                                        <td>61-120</td>
-                                        <td>750</td>
-                                        <td>1,600</td>
-                                    </tr>
-                                    <tr>
-                                        <td>121-240</td>
-                                        <td>540</td>
-                                        <td>1,040</td>  
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div> <!-- end table-responsive-->
-                    </div> <!-- end card-body-->
-                </div> <!-- end card-->
-            </div> <!-- end col-->
-
-            <div class="col-xl-4 col-lg-12">
-                <div class="card">
-                    <div class="card-body">
-                        <a href="" class="p-0 float-end">nbres Livres <i class="mdi mdi-download ms-1"></i></a>
-                        <h4 class="header-title mt-1 mb-3">Auteur</h4>
-
-                        <div class="table-responsive">
-                            <table class="table table-sm table-centered mb-0 font-14">
-                                <thead class="table-light">
-                                    <tr>
-                                        <th>Livres</th>
-                                        <th style="width: 30%;">Classification</th>
-                                        <th style="width: 30%;">Disponible</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>0-30</td>
-                                        <td>2,250</td>
-                                        <td>4,250</td>
-                                    </tr>
-                                    <tr>
-                                        <td>31-60</td>
-                                        <td>1,501</td>
-                                        <td>2,050</td>
-                                    </tr>
-                                    <tr>
-                                        <td>61-120</td>
-                                        <td>750</td>
-                                        <td>1,600</td>
-                                    </tr>
-                                    <tr>
-                                        <td>121-240</td>
-                                        <td>540</td>
-                                        <td>1,040</td>  
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div> <!-- end table-responsive-->
-                    </div> <!-- end card-body-->
-                </div> <!-- end card-->
-            </div> <!-- end col-->
-
+            {% for auteur, livres in auteurs_livres %}
+                {% if livres|length > 0 %}
+                    <div class="col-xl-4 col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="header-title mt-1 mb-3">{{ auteur.nom_auteur }} {{ auteur.prenom_auteur }}</h4>
+                                <div class="table-responsive">
+                                    <table class="table table-sm table-centered mb-0 font-14">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th>Livres</th>
+                                                <th style="width: 30%;">Classification</th>
+                                                <th style="width: 30%;">Disponible</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for livre in livres %}
+                                                <tr>
+                                                    <td>{{ livre.titre }}</td>
+                                                    <td>{{ livre.classification }}</td>
+                                                    <td>{{ livre.disponible }}</td>
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div> <!-- end table-responsive-->
+                            </div> <!-- end card-body-->
+                        </div> <!-- end card-->
+                    </div> <!-- end col-->
+                    {% if forloop.counter|divisibleby:3 and not forloop.last %}
+                        </div><div class="row">
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
         </div>
-
         
-
-        <div class="row">
-            <div class="col-xl-4 col-lg-12">
-                <div class="card">
-                    <div class="card-body">
-                        <a href="" class="p-0 float-end">nbres Livres <i class="mdi mdi-download ms-1"></i></a>
-                        <h4 class="header-title mt-1 mb-3">Auteur</h4>
-    
-                        <div class="table-responsive">
-                            <table class="table table-sm table-centered mb-0 font-14">
-                                <thead class="table-light">
-                                    <tr>
-                                        <th>Livres</th>
-                                        <th style="width: 30%;">Classification</th>
-                                        <th style="width: 30%;">Disponible</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>0-30</td>
-                                        <td>2,250</td>
-                                        <td>4,250</td>
-                                    </tr>
-                                    <tr>
-                                        <td>31-60</td>
-                                        <td>1,501</td>
-                                        <td>2,050</td>
-                                    </tr>
-                                    <tr>
-                                        <td>61-120</td>
-                                        <td>750</td>
-                                        <td>1,600</td>
-                                    </tr>
-                                    <tr>
-                                        <td>121-240</td>
-                                        <td>540</td>
-                                        <td>1,040</td>  
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div> <!-- end table-responsive-->
-                    </div> <!-- end card-body-->
-                </div> <!-- end card-->
-            </div> <!-- end col-->
-    
-            <div class="col-xl-4 col-lg-12">
-                <div class="card">
-                    <div class="card-body">
-                        <a href="" class="p-0 float-end">nbres Livres <i class="mdi mdi-download ms-1"></i></a>
-                        <h4 class="header-title mt-1 mb-3">Auteur</h4>
-    
-                        <div class="table-responsive">
-                            <table class="table table-sm table-centered mb-0 font-14">
-                                <thead class="table-light">
-                                    <tr>
-                                        <th>Livres</th>
-                                        <th style="width: 30%;">Classification</th>
-                                        <th style="width: 30%;">Disponible</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>0-30</td>
-                                        <td>2,250</td>
-                                        <td>4,250</td>
-                                    </tr>
-                                    <tr>
-                                        <td>31-60</td>
-                                        <td>1,501</td>
-                                        <td>2,050</td>
-                                    </tr>
-                                    <tr>
-                                        <td>61-120</td>
-                                        <td>750</td>
-                                        <td>1,600</td>
-                                    </tr>
-                                    <tr>
-                                        <td>121-240</td>
-                                        <td>540</td>
-                                        <td>1,040</td>  
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div> <!-- end table-responsive-->
-                    </div> <!-- end card-body-->
-                </div> <!-- end card-->
-            </div> <!-- end col-->
-
-            <div class="col-xl-4 col-lg-12">
-                <div class="card">
-                    <div class="card-body">
-                        <a href="" class="p-0 float-end">nbres Livres <i class="mdi mdi-download ms-1"></i></a>
-                        <h4 class="header-title mt-1 mb-3">Auteur</h4>
-
-                        <div class="table-responsive">
-                            <table class="table table-sm table-centered mb-0 font-14">
-                                <thead class="table-light">
-                                    <tr>
-                                        <th>Livres</th>
-                                        <th style="width: 30%;">Classification</th>
-                                        <th style="width: 30%;">Disponible</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>0-30</td>
-                                        <td>2,250</td>
-                                        <td>4,250</td>
-                                    </tr>
-                                    <tr>
-                                        <td>31-60</td>
-                                        <td>1,501</td>
-                                        <td>2,050</td>
-                                    </tr>
-                                    <tr>
-                                        <td>61-120</td>
-                                        <td>750</td>
-                                        <td>1,600</td>
-                                    </tr>
-                                    <tr>
-                                        <td>121-240</td>
-                                        <td>540</td>
-                                        <td>1,040</td>  
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div> <!-- end table-responsive-->
-                    </div> <!-- end card-body-->
-                </div> <!-- end card-->
-            </div> <!-- end col-->
-
-        </div>
-
-        <div class="row">
-            <div class="col-xl-4 col-lg-12">
-                <div class="card">
-                    <div class="card-body">
-                        <a href="" class="p-0 float-end">nbres Livres <i class="mdi mdi-download ms-1"></i></a>
-                        <h4 class="header-title mt-1 mb-3">Auteur</h4>
-
-                        <div class="table-responsive">
-                            <table class="table table-sm table-centered mb-0 font-14">
-                                <thead class="table-light">
-                                    <tr>
-                                        <th>Livres</th>
-                                        <th style="width: 30%;">Classification</th>
-                                        <th style="width: 30%;">Disponible</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>0-30</td>
-                                        <td>2,250</td>
-                                        <td>4,250</td>
-                                    </tr>
-                                    <tr>
-                                        <td>31-60</td>
-                                        <td>1,501</td>
-                                        <td>2,050</td>
-                                    </tr>
-                                    <tr>
-                                        <td>61-120</td>
-                                        <td>750</td>
-                                        <td>1,600</td>
-                                    </tr>
-                                    <tr>
-                                        <td>121-240</td>
-                                        <td>540</td>
-                                        <td>1,040</td>  
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div> <!-- end table-responsive-->
-                    </div> <!-- end card-body-->
-                </div> <!-- end card-->
-            </div> <!-- end col-->
-
-            <div class="col-xl-4 col-lg-12">
-                <div class="card">
-                    <div class="card-body">
-                        <a href="" class="p-0 float-end">nbres Livres <i class="mdi mdi-download ms-1"></i></a>
-                        <h4 class="header-title mt-1 mb-3">Auteur</h4>
-
-                        <div class="table-responsive">
-                            <table class="table table-sm table-centered mb-0 font-14">
-                                <thead class="table-light">
-                                    <tr>
-                                        <th>Livres</th>
-                                        <th style="width: 30%;">Classification</th>
-                                        <th style="width: 30%;">Disponible</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>0-30</td>
-                                        <td>2,250</td>
-                                        <td>4,250</td>
-                                    </tr>
-                                    <tr>
-                                        <td>31-60</td>
-                                        <td>1,501</td>
-                                        <td>2,050</td>
-                                    </tr>
-                                    <tr>
-                                        <td>61-120</td>
-                                        <td>750</td>
-                                        <td>1,600</td>
-                                    </tr>
-                                    <tr>
-                                        <td>121-240</td>
-                                        <td>540</td>
-                                        <td>1,040</td>  
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div> <!-- end table-responsive-->
-                    </div> <!-- end card-body-->
-                </div> <!-- end card-->
-            </div> <!-- end col-->
-
-            <div class="col-xl-4 col-lg-12">
-                <div class="card">
-                    <div class="card-body">
-                        <a href="" class="p-0 float-end">nbres Livres <i class="mdi mdi-download ms-1"></i></a>
-                        <h4 class="header-title mt-1 mb-3">Auteur</h4>
-
-                        <div class="table-responsive">
-                            <table class="table table-sm table-centered mb-0 font-14">
-                                <thead class="table-light">
-                                    <tr>
-                                        <th>Livres</th>
-                                        <th style="width: 30%;">Classification</th>
-                                        <th style="width: 30%;">Disponible</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>0-30</td>
-                                        <td>2,250</td>
-                                        <td>4,250</td>
-                                    </tr>
-                                    <tr>
-                                        <td>31-60</td>
-                                        <td>1,501</td>
-                                        <td>2,050</td>
-                                    </tr>
-                                    <tr>
-                                        <td>61-120</td>
-                                        <td>750</td>
-                                        <td>1,600</td>
-                                    </tr>
-                                    <tr>
-                                        <td>121-240</td>
-                                        <td>540</td>
-                                        <td>1,040</td>  
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div> <!-- end table-responsive-->
-                    </div> <!-- end card-body-->
-                </div> <!-- end card-->
-            </div> <!-- end col-->
-
-        </div>
         <!-- end row-->
     </div> <!-- container -->
 </div> <!-- content -->
+
+
 <div class="modal fade" id="addAuteurModal" tabindex="-1" aria-labelledby="addAuteurModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">

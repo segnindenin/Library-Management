@@ -44,7 +44,7 @@ class Livre(models.Model):
     @property
     def nbre_livre_dispo(self):
         emprunte = self.EmpruntLivre.aggregate(total=models.Count('id_livre_emprunt'))['total'] or 0
-        return self.nbre_livre_total - emprunte
+        return 0
 
 class Achat(models.Model):
     id_achat = models.AutoField(primary_key=True)
@@ -82,11 +82,13 @@ class Emprunt(models.Model):
     date_retour_prevue = models.DateField()
     etat = models.CharField(max_length=20, choices=[('emprunté', 'Emprunté'), ('non rendu', 'Non Rendu'), ('rendu', 'Rendu')])
     livres = models.ManyToManyField(Livre, related_name='LivreEmprunt')
+
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
         if self.etat in ['emprunté', 'non rendu']:
             self.client.nbre_livre_emprunte += self.livres.count()
             self.client.save()
+            
     def __str__(self):
         return f"Emprunt {self.id_emprunt} - {self.client}"
 
@@ -99,8 +101,8 @@ class LivreEmprunt(models.Model):
     def __str__(self):
         return f"{self.id_emprunt} - {self.isbn_livre}"
     def save(self, *args, **kwargs):
-        if self.date_retour_effectif and not self.pk:
-            livre = self.isbn_livre
-            livre_dispo = livre.nbre_livre_dispo + 1
-            Livre.objects.filter(pk=livre.pk).update(nbre_livre_dispo=livre_dispo)
+        # if self.date_retour_effectif and not self.pk:
+        #     livre = self.isbn_livre
+        #     livre_dispo = livre.nbre_livre_dispo + 1
+        #     Livre.objects.filter(pk=livre.pk).update(nbre_livre_dispo=livre_dispo)
         super().save(*args, **kwargs)
